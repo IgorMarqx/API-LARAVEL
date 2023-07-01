@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('advertises', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(User::class);
-            $table->foreignId(Category::class);
-            $table->foreignId(State::class);
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states');
             $table->string('title');
             $table->float('price');
             $table->boolean('isNegotiable')->default(false);

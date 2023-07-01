@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignIdFor(State::class);
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states');
             $table->rememberToken();
             $table->timestamps();
         });
